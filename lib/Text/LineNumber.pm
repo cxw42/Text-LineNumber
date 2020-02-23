@@ -40,11 +40,12 @@ The object features two lookup methods that convert forward or backward.
 
 All three line ending styles (Unix, Mac, Windows) are recognized as line breaks.
 The offset of the first character in the text is 0.
-the number of the first line is 1. 
+the number of the first line is 1.
 The column of the first character in a line is 1.
-    
 
 =head1 METHODS
+
+The implementation is quite trivial and uses a straight forward binary search.
 
 =head2 new($text)
 
@@ -59,11 +60,11 @@ sub new
   my $lnr_off = [ 0 ];
   while ($text =~ m{(\r\n|\n|\r)}gs)
     {
-      # pos() returns the offset of the next character 
+      # pos() returns the offset of the next character
       # after the match -- exactly what we need here.
       push @$lnr_off, pos $text;
     }
-  return bless $lnr_off, $class; 
+  return bless $lnr_off, $class;
 }
 
 
@@ -95,7 +96,7 @@ sub off2lnr
           $h = $n;
         }
     }
-  
+
   return $h unless wantarray;
   return ($h, $offset - $self->[$l] + 1);
 }
@@ -105,12 +106,13 @@ sub off2lnr
 
 Lnr2off converts a line number to a byte offset.
 The offset of the first character of a line is returned.
-the first character is the one immediatly following the 
+the first character is the one immediatly following the
 previous line ending.
 
 Returns 0 when called with 0 or negative parameters.
-Returns the offset of the last line when called with 
+Returns the offset of the last line when called with
 too high a line number.
+
 =cut
 
 
@@ -131,26 +133,21 @@ Juergen Weigert, C<< <jw at suse.de> >>
 
 =head1 BUGS
 
-- The implementation is quite trivial and uses a straight forward binary search.
+Learning how to use this module may be more effort than writing something
+similar yourself. Using this module still saves you some headache about
+off-by-one errors.
 
-- Learning how to use this module may be more effort than writing something
-  similar yourself. Using this module still saves you some headache about 
-  off-by-one errors.
-
-
-Please report any bugs or feature requests to C<bug-text-linenumber at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Text-LineNumber>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please report any bugs or feature requests to
+C<bug-text-linenumber at rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Text-LineNumber>.  I will be
+notified, and then you'll automatically be notified of progress on your bug as
+I make changes.
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
     perldoc Text::LineNumber
-
 
 You can also look for information at:
 
@@ -160,23 +157,11 @@ You can also look for information at:
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Text-LineNumber>
 
-=item * AnnoCPAN: Annotated CPAN documentation
+=item * MetaCPAN
 
-L<http://annocpan.org/dist/Text-LineNumber>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Text-LineNumber>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Text-LineNumber>
+L<http://metacpan.org/pod/Text::LineNumber>
 
 =back
-
-
-=head1 ACKNOWLEDGEMENTS
-
 
 =head1 COPYRIGHT & LICENSE
 
@@ -184,7 +169,6 @@ Copyright 2008 Juergen Weigert, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
-
 
 =cut
 
