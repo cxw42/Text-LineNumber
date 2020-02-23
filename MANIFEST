@@ -1,9 +1,11 @@
 Changes
-MANIFEST
-Makefile.PL
-README
 lib/Text/LineNumber.pm
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+META.yml			Module meta-data (added by MakeMaker)
+README
 t/00-load.t
-t/pod-coverage.t
-t/pod.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/10-synopsis.t
+t/98-pod.t
+t/99-pod-coverage.t
