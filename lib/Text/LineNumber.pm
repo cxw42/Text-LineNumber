@@ -33,9 +33,9 @@ The object features two lookup methods that convert forward or backward.
 
     my $text = "foo\nHello World\r\nbar\rbaz";
     my $tln = Text::LineNumber->new($text);
-    my $world_lnr = $tln->off2lnr(10);	# = 2
-    my @world     = $tln->off2lnr(10);	# = (2, 7)
-    my $l3o       = $tln->lnr2off(3);	# = 17
+    my $world_lnr = $tln->off2lnr(10);  # = 2
+    my @world     = $tln->off2lnr(10);  # = (2, 7)
+    my $l3o       = $tln->lnr2off(3);   # = 17
     my $line3     = substr $text, $l3o, $tln->lnr2off(4)-$l3o; # = "bar\r"
 
 All three line ending styles (Unix, Mac, Windows) are recognized as line breaks.
@@ -87,13 +87,13 @@ sub off2lnr
       my $n = ($l + $h) >> 1;
       if ($self->[$n] <= $offset)
         {
-	  $l = $n;
+          $l = $n;
           $h = $n if $self->[$l] == $offset;
-	}
+        }
       else
         {
-	  $h = $n;
-	}
+          $h = $n;
+        }
     }
   
   return $h unless wantarray;
